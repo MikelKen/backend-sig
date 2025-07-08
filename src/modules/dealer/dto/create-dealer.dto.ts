@@ -36,4 +36,7 @@ export class CreateDealerDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
+
+  @IsString()
+  password: string;
 }

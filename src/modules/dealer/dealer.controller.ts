@@ -11,10 +11,16 @@ import {
 import { DealerService } from './dealer.service';
 import { CreateDealerDto } from './dto/create-dealer.dto';
 import { UpdateDealerDto } from './dto/update-dealer.dto';
+import { AuthDto } from './dto/auth.dto';
 
 @Controller('dealer')
 export class DealerController {
   constructor(private readonly dealerService: DealerService) {}
+
+  @Post()
+  singin(@Body() auth: AuthDto){
+    return this.dealerService.signIn(auth);
+  }
 
   @Post()
   create(@Body() createDealerDto: CreateDealerDto) {
