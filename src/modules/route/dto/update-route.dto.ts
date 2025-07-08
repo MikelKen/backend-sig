@@ -1,5 +1,14 @@
-import { IsString, IsNumber, IsDate, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsDate,
+  IsOptional,
+  IsBoolean,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
+import { PolylinePointDto } from './create-route-flutter.dto';
 
 export class UpdateRouteDto {
   @IsOptional()
@@ -29,8 +38,53 @@ export class UpdateRouteDto {
   @IsString()
   polyline?: string;
 
+  // Nuevos campos para Flutter
   @IsOptional()
   @IsNumber()
   @Type(() => Number)
-  deliveryId?: number;
+  estimatedDuration?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  startLatitude?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  startLongitude?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  endLatitude?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  endLongitude?: number;
+
+  @IsOptional()
+  @IsString()
+  optimizationMethod?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isOptimized?: boolean;
+
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  startTime?: Date;
+
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  endTime?: Date;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => PolylinePointDto)
+  polylinePoints?: PolylinePointDto[];
 }

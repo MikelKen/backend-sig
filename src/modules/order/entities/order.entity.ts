@@ -1,3 +1,4 @@
+// order.entity.ts
 import {
   Entity,
   Column,
@@ -28,8 +29,8 @@ export enum PaymentMethod {
 
 @Entity()
 export class Order {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ name: 'cliente_id' })
   cliente_id: number;
@@ -68,6 +69,7 @@ export class Order {
   @Column({ type: 'timestamp', nullable: true })
   estimatedDeliveryDate: Date;
 
+  // Campo para el tiempo real de entrega
   @Column({ type: 'timestamp', nullable: true, name: 'delivery_time' })
   deliveryTime: Date;
 
@@ -90,16 +92,18 @@ export class Order {
   @Column({ type: 'boolean', default: false })
   paid: boolean;
 
+  // Método de pago con enum tipado
   @Column({
     type: 'enum',
     enum: PaymentMethod,
     nullable: true,
     name: 'payment_method',
   })
-  paymentMethod: PaymentMethod;
+  paymentMethod?: PaymentMethod;
 
+  // Observaciones de entrega
   @Column({ type: 'text', nullable: true })
-  observations: string;
+  observations?: string;
 
   @ManyToOne(() => Client, (client) => client.orders)
   @JoinColumn({ name: 'cliente_id' })

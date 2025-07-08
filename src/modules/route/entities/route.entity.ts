@@ -11,8 +11,8 @@ import { Dealer } from '../../dealer/entities/dealer.entity';
 
 @Entity()
 export class Route {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ type: 'date' })
   date: Date;
@@ -96,5 +96,5 @@ export class Route {
 
   @OneToMany(() => Delivery, (delivery) => delivery.route)
   @JoinColumn()
-  delivery: Delivery;
+  deliveries: Delivery[];
 }

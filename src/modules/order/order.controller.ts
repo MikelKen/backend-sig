@@ -13,7 +13,9 @@ import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order, OrderStatus } from './entities/order.entity';
-import { OrderResponse } from './dto/order-response.dto';
+import { OrderFormattedDto } from './dto/order-formatted.dto';
+import { DeliveryStatsDto } from '../delivery/dto/delivery-stats.dto';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 
 @Controller('orders')
 export class OrderController {
@@ -25,8 +27,31 @@ export class OrderController {
   }
 
   @Get('formatted')
-  findAllFormatted(): Promise<OrderResponse[]> {
+  findAllFormatted(): Promise<OrderFormattedDto[]> {
     return this.orderService.findAllFormatted();
+  }
+
+  @Get('pending')
+  findPendingFormatted(): Promise<OrderFormattedDto[]> {
+    return this.orderService.findPendingFormatted();
+  }
+
+  @Get('stats')
+  getDeliveryStats(): Promise<DeliveryStatsDto> {
+    return this.orderService.getDeliveryStats();
+  }
+
+  @Patch(':id/status')
+  updateOrderStatus(
+    @Param('id') id: string,
+    @Body() updateStatusDto: UpdateOrderStatusDto,
+  ): Promise<OrderFormattedDto> {
+    return this.orderService.updateOrderStatus(+id, updateStatusDto);
+  }
+
+  @Get(':id/formatted')
+  findOneFormatted(@Param('id') id: string): Promise<OrderFormattedDto> {
+    return this.orderService.findOneFormatted(+id);
   }
 
   @Get('client/:clientId')
@@ -36,12 +61,7 @@ export class OrderController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Order> {
-    return this.orderService.findOne(id);
-  }
-
-  @Get(':id/formatted')
-  findOneFormatted(@Param('id') id: string): Promise<OrderResponse> {
-    return this.orderService.findOneFormatted(id);
+    return this.orderService.findOne(+id);
   }
 
   @Post()
@@ -54,15 +74,15 @@ export class OrderController {
     @Param('id') id: string,
     @Body() updateOrderDto: UpdateOrderDto,
   ): Promise<Order> {
-    return this.orderService.update(id, updateOrderDto);
+    return this.orderService.update(+id, updateOrderDto);
   }
 
-  @Patch(':id/status')
-  updateStatus(
+  @Patch(':id/status-legacy')
+  updateStatusLegacy(
     @Param('id') id: string,
     @Body('status') status: OrderStatus,
   ): Promise<Order> {
-    return this.orderService.updateOrderStatus(id, status);
+    return this.orderService.updateOrderStatus_Legacy(+id, status);
   }
 
   @Delete(':id')

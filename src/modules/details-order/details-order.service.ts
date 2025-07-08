@@ -56,7 +56,7 @@ export class DetailsOrderService {
     });
   }
 
-  async findOne(id: string): Promise<DetailsOrder> {
+  async findOne(id: number): Promise<DetailsOrder> {
     const detailsOrder = await this.detailsOrderRepository.findOne({
       where: { id },
       relations: ['product', 'order'],
@@ -70,7 +70,7 @@ export class DetailsOrderService {
   }
 
   async update(
-    id: string,
+    id: number,
     updateDetailsOrderDto: UpdateDetailsOrderDto,
   ): Promise<DetailsOrder> {
     const detailsOrder = await this.findOne(id);

@@ -9,11 +9,11 @@ import {
 export class CreateDetailsOrderDto {
   @IsOptional()
   @IsString()
-  id?: string;
+  id?: number;
 
   @IsString()
   @IsNotEmpty()
-  orderId: string;
+  orderId: number;
 
   @IsNumber()
   @IsNotEmpty()

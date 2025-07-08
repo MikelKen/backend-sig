@@ -43,7 +43,7 @@ export class Delivery {
   @Column({ nullable: true, name: 'route_order' })
   routeOrder: number;
 
-  @ManyToOne(() => Route, (route) => route.delivery)
+  @ManyToOne(() => Route, (route) => route.deliveries)
   route: Route;
 
   @OneToOne(() => Order, (order) => order.delivery)

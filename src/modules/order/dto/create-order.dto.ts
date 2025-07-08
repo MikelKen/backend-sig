@@ -10,7 +10,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { OrderStatus } from '../entities/order.entity';
+import { OrderStatus, PaymentMethod } from '../entities/order.entity';
 
 export class OrderItemDto {
   @IsString()
@@ -35,7 +35,7 @@ export class OrderItemDto {
 export class CreateOrderDto {
   @IsOptional()
   @IsString()
-  id?: string;
+  id?: number;
 
   @IsNumber()
   @IsNotEmpty()
@@ -89,4 +89,16 @@ export class CreateOrderDto {
   @IsOptional()
   @IsBoolean()
   paid?: boolean;
+
+  @IsOptional()
+  @IsEnum(PaymentMethod)
+  paymentMethod?: PaymentMethod;
+
+  @IsOptional()
+  @IsString()
+  observations?: string;
+
+  @IsOptional()
+  @IsDateString()
+  deliveryTime?: Date;
 }
