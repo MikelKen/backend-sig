@@ -1,11 +1,12 @@
 // update-order-status.dto.ts
 import { IsString, IsOptional, IsEnum, IsDateString } from 'class-validator';
 import { OrderStatus } from '../entities/order.entity';
+import { Transform } from 'class-transformer';
 
 export enum PaymentMethod {
   EFECTIVO = 'efectivo',
-  TARJETA_CREDITO = 'tarjeta_credito',
   TRANSFERENCIA = 'transferencia',
+  QR = 'qr',
 }
 
 export class UpdateOrderStatusDto {
@@ -22,5 +23,6 @@ export class UpdateOrderStatusDto {
 
   @IsOptional()
   @IsDateString()
+  @Transform(({ value }) => (value ? new Date(value) : undefined))
   deliveryTime?: Date;
 }

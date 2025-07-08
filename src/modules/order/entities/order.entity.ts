@@ -23,7 +23,7 @@ export enum OrderStatus {
 
 export enum PaymentMethod {
   EFECTIVO = 'efectivo',
-  TARJETA_CREDITO = 'tarjeta_credito',
+  QR = 'qr',
   TRANSFERENCIA = 'transferencia',
 }
 

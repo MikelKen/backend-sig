@@ -98,7 +98,7 @@ export class OrderSeeder {
         createdAt: new Date(Date.now() - 45 * 60 * 1000), // 45 min ago
         totalAmount: 900.0,
         paid: false,
-        paymentMethod: PaymentMethod.TARJETA_CREDITO,
+        paymentMethod: PaymentMethod.QR,
         observations: 'Edificio azul, 2do piso',
         items: [
           {
@@ -120,7 +120,7 @@ export class OrderSeeder {
         createdAt: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
         totalAmount: 1100.0,
         paid: false,
-        paymentMethod: PaymentMethod.TRANSFERENCIA,
+        paymentMethod: PaymentMethod.QR,
         observations: 'Preferencia de entrega por la tarde',
         items: [
           { productName: 'Dr. Martens 1460', quantity: 1, unitPrice: 720.0 },
@@ -165,7 +165,7 @@ export class OrderSeeder {
         createdAt: new Date(Date.now() - 120 * 60 * 1000), // 2 hours ago
         totalAmount: 850.0,
         paid: false,
-        paymentMethod: PaymentMethod.TARJETA_CREDITO,
+        paymentMethod: PaymentMethod.QR,
         observations: 'Departamento en 3er piso',
         items: [
           {
@@ -254,7 +254,7 @@ export class OrderSeeder {
         deliveryTime: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
         totalAmount: 630.0,
         paid: true,
-        paymentMethod: PaymentMethod.TARJETA_CREDITO,
+        paymentMethod: PaymentMethod.TRANSFERENCIA,
         observations: 'Cliente muy satisfecho',
         items: [
           { productName: 'Adidas Stan Smith', quantity: 1, unitPrice: 350.0 },
@@ -325,7 +325,7 @@ export class OrderSeeder {
         deliveryTime: new Date(Date.now() - 3 * 60 * 60 * 1000), // 3 hours ago
         totalAmount: 830.0,
         paid: true,
-        paymentMethod: PaymentMethod.TARJETA_CREDITO,
+        paymentMethod: PaymentMethod.TRANSFERENCIA,
         observations: 'Cliente recomendó el servicio',
         items: [
           { productName: 'New Balance 990v5', quantity: 1, unitPrice: 480.0 },
@@ -403,7 +403,7 @@ export class OrderSeeder {
         createdAt: new Date(Date.now() - 180 * 60 * 1000), // 3 hours ago
         totalAmount: 1380.0,
         paid: false,
-        paymentMethod: PaymentMethod.TARJETA_CREDITO,
+        paymentMethod: PaymentMethod.TRANSFERENCIA,
         observations: 'Urbanización privada, llamar al guardia',
         items: [
           { productName: 'Dr. Martens 1460', quantity: 1, unitPrice: 720.0 },
