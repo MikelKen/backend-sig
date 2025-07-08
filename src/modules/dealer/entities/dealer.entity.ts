@@ -28,6 +28,9 @@ export class Dealer {
   @Column()
   email: string;
 
+  @Column()
+  password: string;
+
   @OneToMany(() => Route, (route) => route.dealer)
   routes: Route[];
 
